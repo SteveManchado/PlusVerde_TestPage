@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plus Verde SAS - Servicios Ambientales y Logísticos</title>
+    <style>
+        /* --- Variables y Reset --- */
+        :root {
+            --primary-color: #2E7D32; /* Verde Bosque */
+            --secondary-color: #81C784; /* Verde Claro */
+            --accent-color: #F9A825; /* Amarillo/Dorado para detalles */
+            --text-dark: #333333;
+            --text-light: #f4f4f4;
+            --bg-light: #f9f9f9;
+            --bg-white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- Header y Navegación --- */
+        header {
+            background: var(--bg-white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 10px 20px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .logo span { color: var(--accent-color); }
+
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a {
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--primary-color); }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .btn:hover { background: #1b5e20; }
+
+        /* --- Secciones Generales --- */
+        section { padding: 60px 0; }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        .section-title .line {
+            width: 60px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 0 auto;
+        }
+
+        /* --- Servicios --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--bg-white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .service-card h3 { margin-bottom: 15px; color: #444; }
+        .service-card ul li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .service-card ul li::before {
+            content: "•";
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* --- Experiencia --- */
+        .experience-section { background-color: var(--bg-white); }
+        
+        .exp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .exp-item {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+        .exp-item h4 { color: var(--primary-color); margin-bottom: 10px; font-size: 1.2rem;}
+
+        /* --- Equipos --- */
+        .equipment-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .equip-badge {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: #222;
+            color: #ccc;
+            padding: 40px 0;
+            text-align: center;
+        }
+        footer p { margin-bottom: 10px; }
+        .nit { font-size: 0.9rem; opacity: 0.7; }
+
+        /* --- Galería de Imágenes --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            padding: 20px 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+            height: 200px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Modal (Lightbox) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 5px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2rem; }
+            nav { flex-direction: column; height: auto; padding: 20px 0; }
+            .nav-links { margin-top: 20px; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Plus Verde <span>SAS</span></div>
+                <ul class="nav-links">
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#experiencia">Experiencia</a></li>
+                    <li><a href="#equipos">Equipos</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Soluciones Ambientales y Logísticas</h1>
+            <p>Servicios técnicos de calidad, estudios especializados y logística integral para proyectos viales, energéticos e industriales.</p>
+            <a href="#contacto" class="btn">Contáctanos</a>
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="servicios" class="container">
+        <div class="section-title">
+            <h2>Nuestras Áreas de Trabajo</h2>
+            <div class="line"></div>
+        </div>
+
+        <div class="services-grid">
+            <!-- Servicios Técnicos -->
+            <div class="service-card">
+                <h3>Servicios Técnicos y Logística</h3>
+                <ul>
+                    <li>Logística para estudios sociales, bióticos y físicos.</li>
+                    <li>Servicio de transporte a profesionales.</li>
+                    <li>Alimentación y refrigerios.</li>
+                    <li>Apoyo logístico para comisiones de campo.</li>
+                </ul>
+            </div>
+
+            <!-- Servicios Especializados -->
+            <div class="service-card">
+                <h3>Servicios Especializados</h3>
+                <ul>
+                    <li>Recolección de datos (Calidad de agua, aire, ruido).</li>
+                    <li>Trámites de permisos y licencias ambientales.</li>
+                    <li>Permisos de tala, podas y aprovechamiento forestal.</li>
+                    <li>Campañas de monitoreo de flora y fauna.</li>
+                    <li>Seguimiento a compromisos ambientales.</li>
+                    <li>Manejo de viveros y siembras (compensaciones).</li>
+                    <li>Diagnóstico y estudios prediales.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experiencia -->
+    <section id="experiencia" class="experience-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Clientes y Experiencia</h2>
+                <div class="line"></div>
+            </div>
+            <div class="exp-grid">
+                <div class="exp-item">
+                    <h4>Sector Vías</h4>
+                    <p>Logística y acompañamiento socioambiental. Proyectos: Buga-Buenaventura, Pasto-Rumichaca, Canal del Dique.</p>
+                </div>
+                <div class="exp-item">
+                    <h4>Sector Energía</h4>
+                    <p>Logística y trabajos socioambientales. Proyectos: Solar Villa Vieja, Línea Sahagún, Solar Escobal.</p>
+                </div>
+                <div class="exp-item">
+                    <h4>Sector Industrias</h4>
+                    <p>Monitoreos ambientales. Proyectos: Dragado SP Buenaventura, Aguas superficiales vía Pasto-Rumichaca.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galería -->
+    <section id="galeria" class="container">
+        <div class="section-title">
+            <h2>Galería de Proyectos</h2>
+            <div class="line"></div>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openModal('img/proyecto-vias.png')">
+                <img src="img/proyecto-vias.png" alt="Proyecto Vial">
+            </div>
+            <div class="gallery-item" onclick="openModal('img/proyecto-energia.png')">
+                <img src="img/proyecto-energia.png" alt="Proyecto Energía">
+            </div>
+            <div class="gallery-item" onclick="openModal('img/monitoreo-fauna.png')">
+                <img src="img/monitoreo-fauna.png" alt="Monitoreo Fauna">
+            </div>
+            <div class="gallery-item" onclick="openModal('img/logistica-campo.png')">
+                <img src="img/logistica-campo.png" alt="Logística de Campo">
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipos -->
+    <section id="equipos" class="container">
+        <div class="section-title">
+            <h2>Nuestros Equipos</h2>
+            <div class="line"></div>
+        </div>
+        <div class="equipment-list">
+            <span class="equip-badge">Camionetas 4x4</span>
+            <span class="equip-badge">Videobeam y Mobiliario</span>
+            <span class="equip-badge">Redes de niebla</span>
+            <span class="equip-badge">Trampas para mamíferos</span>
+            <span class="equip-badge">Guadañas y Fumigadoras</span>
+            <span class="equip-badge">GPS y Drones</span>
+            <span class="equip-badge">Estaciones de topografía</span>
+        </div>
+    </section>
+
+    <!-- Footer / Contacto -->
+    <footer id="contacto">
+        <div class="container">
+            <div class="logo" style="color: white; margin-bottom: 20px;">Plus Verde <span>SAS</span></div>
+            <p class="nit">NIT: 901623023-1</p>
+            <p>Comprometidos con la calidad técnica y el medio ambiente.</p>
+            <br>
+            <p>&copy; 2026 Plus Verde SAS. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal para Galería -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+
+    <script>
+        // Funciones para la galería
+        function openModal(src) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImg');
+            modal.style.display = "flex";
+            modalImg.src = src;
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
